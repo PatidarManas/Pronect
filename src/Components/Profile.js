@@ -8,7 +8,7 @@ import Projectload from './Projectload'
 import { BsFillChatSquareQuoteFill } from "react-icons/bs"
 
 import { useHref, useNavigate } from 'react-router-dom'
-const Profile = () => {
+const Profile = ({selfuser}) => {
     // const URL = "http://localhost:4000"
     const URL = "https://pronect-server.onrender.com";
     const history = useNavigate();
@@ -39,7 +39,7 @@ const Profile = () => {
         <> {user ?
 
             <div style={{ backgroundColor: "#5C5470" }} className='w-full '>
-                <Header user={user} />
+                <Header user={selfuser} />
 
                 <div className='fixed top-12 flex gap-5 my-10 mx-4 w-3/12'>
 

@@ -59,7 +59,7 @@ function App() {
       <Route path={"/upload"} element={loading? <Loading/> : islogin ?<Upload clg={userdet ? userdet.clg : ""} user={userdet ? userdet : ""} domain={userdet ? userdet.domain :""} name={userdet ? userdet.name:""} /> : <Signup/>}/>
       <Route path={'/project/:id'} element={loading? <Loading/> : islogin ?<Project user={userdet ? userdet : ""}/> : <Signup/>}/>
       <Route path={'/test'} element={<ProfileDropdown/>}/>
-      <Route path={'/profile/:username'} element={loading? <Loading/> : islogin ?<Profile user={userdet ? userdet : ""}/> : <Signup/>}/>
+      <Route path={'/profile/:username'} element={loading? <Loading/> : islogin ?<Profile selfuser={userdet ? userdet : ""}/> : <Signup/>}/>
       </Routes>
   </Router>
   );
