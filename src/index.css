@@ -11,6 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+      
+  }
+
+  100% {
+      opacity: 1;
+      
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-in forwards;
+  animation-delay: 250ms;
+
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

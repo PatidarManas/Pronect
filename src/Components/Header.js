@@ -93,11 +93,11 @@ const Header = ({ user }) => {
                                             <div className='flex'>
                                                 <BsPerson size={25} color='gray' className='self-center' />
                                                 <div className='h-8 mx-1 w-0.5 bg-gray-400 '> </div>
-                                                <a href={"/" + element.username} className='mx-1 font-light text-xl  self-center cursor-pointer'>{element.name}</a>
+                                                <a href={"/profile/" + element.username} className='mx-1 font-light text-xl  self-center cursor-pointer'>{element.name}</a>
 
-                                                <h1 className='font-extralight text-sm self-center'>(3000🔥)</h1>
+                                                <h1 className='font-extralight text-sm self-center'>({user.rp}🔥)</h1>
                                             </div>
-                                            <a href={"/" + element.username} className=' self-center text-stone-400 cursor-pointer'>Visit profile</a>
+                                            <a href={"/profile/" + element.username} className=' self-center text-stone-400 cursor-pointer'>Visit profile</a>
                                         </div>
                                     </div>)
                             })
