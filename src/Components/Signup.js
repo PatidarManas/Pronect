@@ -205,6 +205,10 @@ const Signup = () => {
     async function registerhandler(e) {
         console.log("skds")
         e.preventDefault();
+        document.getElementById("signupbtn").innerHTML = "Wait..."
+        document.getElementById("signupbtn").style.backgroundColor = "gray"
+        document.getElementById("signupbtn").disabled =true
+       
         if (newpassword.length > "7") {
             await axios.post(`${URL}/auth/register`, {
                 newusername, newpassword, clg, domain, name, newemail
@@ -221,6 +225,10 @@ const Signup = () => {
                 });
                 // history("/");
             }).catch((error) => {
+                
+        document.getElementById("signupbtn").innerHTML = "Submit"
+        document.getElementById("signupbtn").style.backgroundColor = "blue"
+        document.getElementById("signupbtn").disabled =false
                 toast.error(error, {
                     position: "top-center",
                     autoClose: 5000,

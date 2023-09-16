@@ -270,7 +270,7 @@ const Upload = ({ clg, name, domain,user }) => {
                         </div>
                         <div className='flex self-end gap-2'>
 
-                            <button className='flex bg-gray-300 border-2 border-black px-4 py-2 border border-stone-100 rounded-lg text-black font-semibold self-end text-lg' disabled>Check for Plagarism*</button>
+                            <button onClick={()=>{checkplag()}} className='flex bg-gray-300 border-2 border-black px-4 py-2 border border-stone-100 rounded-lg text-black font-semibold self-end text-lg' >Check for Plagarism*</button>
                             <button className='flex bg-gray-400 px-4 py-2 border border-stone-100 rounded-lg text-black font-semibold self-end text-lg' onClick={() => { reviewhandler() }}>Review</button>
                         </div>
                     </div>
