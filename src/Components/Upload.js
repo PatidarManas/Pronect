@@ -21,6 +21,15 @@ const Upload = ({ clg, name, domain,user }) => {
     const [type, settype] = useState("Youtube");
     const [link, setlink] = useState("");
     const [username, setusername] = useState("");
+    async function checkplag(){
+        await axios.post(`${URL}/project/check`,{
+            discription:disc,title:title
+        }).then((res)=>{
+            alert("Similarity % in title is" + res.data.highesttitle + "in discription is " + res.data.highestdisc)
+        }).catch((error)=>{
+            alert(error)
+        })
+    }
     function addhandler(e) {
         e.preventDefault();
         var a = [type, link];
