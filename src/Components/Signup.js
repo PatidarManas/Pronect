@@ -133,8 +133,8 @@ const Signup = () => {
         document.getElementById("b5").style.display = "none";
         document.getElementById("r5").style.display = "flex";
         document.getElementById("i6").style.display = "flex";
-        document.getElementById("submitbtn").style.display = "flex";
-        document.getElementById("submitbtn").disabled = false;
+        document.getElementById("signupbtn").style.display = "flex";
+        document.getElementById("signupbtn").disabled = false;
     }
     async function longinhandler(e) {
         e.preventDefault();
