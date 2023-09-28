@@ -25,7 +25,7 @@ const Upload = ({ clg, name, domain,user }) => {
         await axios.post(`${URL}/project/check`,{
             discription:disc,title:title
         }).then((res)=>{
-            alert("Similarity % in title is" + res.data.highesttitle + "in discription is " + res.data.highestdisc)
+            alert("Similarity % in title is :" + res.data.highesttitle + "% in discription is " + res.data.highestdisc + "%")
         }).catch((error)=>{
             alert(error)
         })

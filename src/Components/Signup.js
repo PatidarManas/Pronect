@@ -474,7 +474,7 @@ const Signup = () => {
                                                 class="w-4/6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500   p-2.5 "
                                                 placeholder="*********" required />
                                         </div>
-                                        <button id='submitbtn' type="button" onClick={(e) => registerhandler(e)}
+                                        <button id='signupbtn' type="button" onClick={(e) => registerhandler(e)}
                                             class="hidden w-24 bg-blue-500 self-center rounded-lg text-white border-2 border-blue-900  focus:ring-4 focus:ring-blue-300 font-semibold px-5 py-2.5 mr-2 mb-2  focus:outline-none ">Submit</button>
 
 
