@@ -13,6 +13,7 @@ import Project from './Project'
 import ProfileDropdown from './Test'
 import Notification from './Notification'
 import pronect from '../pronect.png'
+import Chat from './Chat'
 // import logo from "../svg/logo-no-background.svg"
 
 const Home = ({ user,lastlogin }) => {
@@ -117,7 +118,7 @@ const Home = ({ user,lastlogin }) => {
                     <button onClick={() => { document.getElementById("contactbox").style.display = "none" }} className='absolute top-2 right-2 text-red-500 font-bold text-xl'>Close</button>
                     <h1 className='self-center text-2xl font-semibold mb-4'>Help us improve</h1>
                     <p className='text-lg '>Please let us know your experience with <strong>Pro-nect</strong> a platform for you.
-                        We would be happy to listen from you. write as a email at <a href='mailto:manaspatidar170@gmail.com' className='text-blue-400 cursor-pointer'>manaspatidar170@gmail.com</a>
+                        We would be happy to listen from you. write as a email at <a href='mailto:p.pronect@gmail.com' className='text-blue-400 cursor-pointer'>p.pronect@gmail.com</a>
                           </p>
                     <h1 className='text-base self-center font-light mt-4'>Thank you and have a nice experience ahead</h1>
                 </div>
@@ -146,7 +147,7 @@ const Home = ({ user,lastlogin }) => {
                 <button onClick={() => logouthandler()} className='absolute bottom-2 flex right-10 text-lg gap-2'><TbLogout2 size={20} className='self-center' />Logout</button>
             </div>
             <div style={{ backgroundColor: "#5C5470" }} className='fixed min-h-screen'>
-                <button  className='fixed bottom-0 px-2 py-1 text-lg  hover:bg-blue-500 right-5 bg-blue-400 rounded-t-lg '>Chat with Us*</button>
+                <button  onClick={()=>{document.getElementById("chat").style.display="flex"}} className='fixed bottom-0 px-2 py-1 text-lg  hover:bg-blue-500 right-5 bg-blue-400 rounded-t-lg '>Chat with Us*</button>
                 <div id='searchbar' className='hidden backdrop-blur-sm z-40 absolute top-0 w-full h-screen bg-  px-10'>
                     <button id='filterbtn' onClick={()=>{document.getElementById("filters").style.display="flex"; document.getElementById("filterbtn").style.display="none"}} className='fixed right-64 top-4 text-lg bg-blue-400 tracking-wide px-2 py-1 rounded-md hover:bg-blue-500 '>Filters</button>
                     <div id='filters' className='hidden absolute left-80 ml-4 bg-white rounded-xl w-1/2 z-50 mx-auto flex flex-col p-4' >
@@ -297,6 +298,11 @@ const Home = ({ user,lastlogin }) => {
                             return <Notification id={element} />
                         })}
                     </div>
+                </div>
+                <div id='chat' className='hidden'>
+                <button onClick={()=>{document.getElementById("chat").style.display="none"}} className='fixed top-56 mt-5 right-5 text-lg border border-slate-800 p- px-2 rounded-lg text-black z-50 text-white'>Close</button>
+                <Chat username={user.name}/>
+
                 </div>
             </div> 
         </> : <div className='self-center mx-auto text-2xl font-semibold p-4'>Currently Platform is unavailable for this screen size please use platform on a device with atleast 770 screen widthcd b    </div> }</>

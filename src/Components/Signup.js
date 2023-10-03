@@ -495,6 +495,9 @@ const Signup = () => {
                     </section>
                 </div>
             </div>
+            <div className='fixed top-10 right-10'>
+                <a href='../../../admin/login' className='text-white text-xl font-mono border border-slate-400 p-2'>Admin Login</a>
+            </div>
         </section>
             <ToastContainer />
         </> : <div className='self-center mx-auto text-2xl font-semibold p-4'>Currently Platform is unavailable for this screen size please use platform on a device with atleast 770 screen width </div> }</> 

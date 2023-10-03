@@ -13,6 +13,9 @@ import Example from './Components/Test';
 import ProfileDropdown from './Components/Test';
 import Profile from './Components/Profile';
 import Landing from './Components/Landing';
+import Adminlogin from './Components/Admin_login';
+import Admin from './Components/Admin';
+import Chat from './Components/Chat';
 
 function App() {
     // const URL = "http://localhost:4000";
@@ -20,10 +23,13 @@ function App() {
   const [test,settaste] = useState();
   const [loading,setloading] = useState(true);
   const [islogin,setlogin] = useState(false);
+  const [adminloading,setadminloading] = useState(true);
+  const [isadminlogin,setadminlogin] = useState(false);
   const [userdet,setuserdet] =useState();
   const [lastlogin,setlastlogin] =useState();
   async function isloginfunc(){
     const token = document.cookie;
+    console.log(token)
       await axios.post(`${URL}/auth/islogin`,{
         token
       }).then((res)=>{
@@ -41,11 +47,28 @@ function App() {
         console.log(error)
       })
   }
+
+  async function isadminloginfunc (){
+    const admintoken = document.cookie
+    await axios.post(`${URL}/admin/islogin`,{
+      admintoken
+    }).then((res)=>{
+      if(res.status==200){
+        setadminloading(false);
+        setadminlogin(true);
+      }else if(res.status==204){
+        setadminloading(false);
+
+      }
+    }).catch((error)=>{
+      alert(error);
+    })
+  }
   useEffect(() => {
     
   
     isloginfunc();
-    console.log("whytwice")
+    isadminloginfunc();
   }, [test])
   
   return (
@@ -60,6 +83,10 @@ function App() {
       <Route path={'/project/:id'} element={loading? <Loading/> : islogin ?<Project user={userdet ? userdet : ""}/> : <Signup/>}/>
       <Route path={'/test'} element={<ProfileDropdown/>}/>
       <Route path={'/profile/:username'} element={loading? <Loading/> : islogin ?<Profile selfuser={userdet ? userdet : ""}/> : <Signup/>}/>
+      <Route path={'/admin/login'} element={adminloading ? <loading/> : isadminlogin ? <Admin/> : <Adminlogin/>}/>
+      <Route path={'/admin'} element={adminloading ? <loading/> : isadminlogin ? <Admin/> : <Adminlogin/>}/>
+      <Route path={'/chat'} element={ <Chat/>}/>
+      
       </Routes>
   </Router>
   );

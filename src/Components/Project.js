@@ -12,7 +12,7 @@ import { set } from 'mongoose';
 import Comments from './comments';
 import Header from './Header';
 const Project = ({ user }) => {
-   // const URL = "http://localhost:4000"
+//    const URL = "http://localhost:4000"
    const URL = "https://pronect-server.onrender.com";
     const [loading, setloading] = useState(true);
     const visible = window.screen.width >= "765" ? true : false;

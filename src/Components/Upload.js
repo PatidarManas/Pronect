@@ -21,11 +21,32 @@ const Upload = ({ clg, name, domain,user }) => {
     const [type, settype] = useState("Youtube");
     const [link, setlink] = useState("");
     const [username, setusername] = useState("");
+    const [plagresult,setplagresult] = useState(null);
+    const [disable,setdisable] = useState(true)
     async function checkplag(){
+        document.getElementById("plagcheckbtn").innerHTML="Wait..."
+        document.getElementById("plagcheckbtn").disabled=true
+        document.getElementById("plagcheckbtn").style.backgroundColor="red"
+
         await axios.post(`${URL}/project/check`,{
             discription:disc,title:title
         }).then((res)=>{
-            alert("Similarity % in title is :" + res.data.highesttitle + "% in discription is " + res.data.highestdisc + "%")
+            setplagresult([res.data.highesttitle,res.data.highestdisc]);
+            document.getElementById("plagresult").style.display="flex"
+            
+        document.getElementById("plagcheckbtn").innerHTML="Check for Plagiarism"
+        document.getElementById("plagcheckbtn").disabled=false
+        document.getElementById("plagcheckbtn").style.backgroundColor="gray"
+         if(Math.floor(res.data.highesttitle)<=50 && Math.floor(res.data.highestdisc) <= 50){
+            console.log("allllll")
+            setdisable(false);
+            document.getElementById("reviewbtn").classList.remove("cursor-not-allowed");
+            document.getElementById("reviewbtn").classList.add("cursor-pointer");
+            document.getElementById("reviewbtn").classList.remove("bg-gray-400");
+            document.getElementById("reviewbtn").classList.add("bg-blue-500");
+            document.getElementById("reviewbtn").classList.add("text-white");
+            
+        }
         }).catch((error)=>{
             alert(error)
         })
@@ -45,8 +66,9 @@ const Upload = ({ clg, name, domain,user }) => {
         e.preventDefault();
         var check = true;
         if (check) {
+            const token = document.cookie;
             await axios.post(`${URL}/auth/searchuser`, {
-                username
+                username,token
             }).then((res) => {
                 if (res.status == 200) {
 
@@ -268,17 +290,20 @@ const Upload = ({ clg, name, domain,user }) => {
                                 <button className='bg-green-400 rounded-lg px-4 py-2 font-medium' onClick={(e) => addmemberhandler(e)}>Add +</button>
                             </div>
                         </div>
+                        <div id='plagresult' className='flex my-4 hidden'>
+                                <h1 className='text-black text-lg font-mono flex'>Plagiraism Meter : Title Matches {plagresult ? Math.floor(plagresult[0]) : ""}% and Discription Matches {plagresult ? Math.floor(plagresult[1]) : ""}% {plagresult ? Math.floor(plagresult[1])<=50 && Math.floor(plagresult[0]) <= 50 ? <h2 className='text-green-500 ml-2 underline underline-offset-4'>Allowed</h2> : <h2 className='text-red-500 ml-2 underline underline-offset-4'>Not Allowed</h2> :""}</h1>
+                        </div>
                         <div className='flex self-end gap-2'>
 
-                            <button onClick={()=>{checkplag()}} className='flex bg-gray-300 border-2 border-black px-4 py-2 border border-stone-100 rounded-lg text-black font-semibold self-end text-lg' >Check for Plagarism*</button>
-                            <button className='flex bg-gray-400 px-4 py-2 border border-stone-100 rounded-lg text-black font-semibold self-end text-lg' onClick={() => { reviewhandler() }}>Review</button>
+                            <button id='plagcheckbtn' onClick={()=>{checkplag()}} className='flex bg-gray-300 border-2 border-black px-4 py-2 border border-stone-100 rounded-lg text-black font-semibold self-end text-lg' >Check for Plagarism</button>
+                            <button id='reviewbtn' className='flex bg-gray-400 px-4 py-2 border border-stone-100 rounded-lg text-black font-semibold self-end text-lg cursor-not-allowed' onClick={() => { reviewhandler() }} disabled={disable}>Review</button>
                         </div>
                     </div>
                 </div>
                 <div id='review' style={{ backgroundColor: "#EEEEEE" }} className='hidden w-8/12 h-max my-10 p-6 rounded-lg '>
                     <div className='mb-6 font-bold'>Review and Upload</div>
                     <div className='flex flex-col gap-2'>
-                        <h2 className='text-2xl font-semibold underline underline-offset-8'>{title}</h2>
+                        <h2 className='text-2xl leading-1 font-semibold underline underline-offset-8'>{title}</h2>
                         <h3 className='my-3 text-base font-serif	 leading-relaxed	text-justify	'>{disc}</h3>
                         {links ? links.map((element) => {
                             return <a href={element[1]} target='blank' className='flex gap-1 text-stone-600 cursor-pointer'><h1 className='font-semibold text-black'>{element[0]}</h1><AiOutlineLink className='self-center' /> {element[1]} </a>
